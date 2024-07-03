@@ -1,5 +1,9 @@
 package com.heavymaverick.spring;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component("personBean")
 public class Person {
     private String surname;
     private int age;
@@ -22,11 +26,13 @@ public class Person {
     }
 
     public Person(){
-
+        System.out.println("Person bean created");
     }
-    public Person(Pet pet) {
-        this.pet = pet;
-    }
+//    public Person(Pet pet) {
+//        System.out.println("Person bean is created");
+//        this.pet = pet;
+//    }
+    @Autowired
     public void setPet(Pet pet) {
         System.out.println("Class Person: set pet " + pet.toString());
         this.pet = pet;
