@@ -1,18 +1,28 @@
 package com.heavymaverick.spring;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+@Component("dogBean")
+@Scope("singleton")
 public class Dog implements Pet{
-//    private String name;
-//
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    @PostConstruct
     private void init(){
         System.out.println("Dog init");
     }
+    @PreDestroy
     private void destroy(){
         System.out.println("Dog destroy");
     }
@@ -22,6 +32,6 @@ public class Dog implements Pet{
     }
     @Override
     public void say(){
-        System.out.println("textmessage");
+        System.out.println("DogDogDogDogDogDogDogDogDogDog");
     }
 }
