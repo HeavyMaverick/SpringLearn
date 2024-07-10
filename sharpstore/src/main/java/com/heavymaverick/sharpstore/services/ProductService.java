@@ -1,55 +1,70 @@
 package com.heavymaverick.sharpstore.services;
 
 import com.heavymaverick.sharpstore.models.ClothingItem;
-import org.springframework.context.annotation.ComponentScan;
+import com.heavymaverick.sharpstore.models.Image;
+import com.heavymaverick.sharpstore.repositories.ItemRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Slf4j
+@RequiredArgsConstructor
 public class ProductService {
+    private final ItemRepository itemRepository;
     private List<ClothingItem> clothingItems = new ArrayList<>();
     private long ID = 0;
 
-    {
-        clothingItems.add(new ClothingItem(
-                ++ID,
-                "Льняная рубашка",
-                "Рубашка с вышивкой. Отлично подойдет на лето",
-                "Материал: Лен",
-                4000,
-                "Летняя коллекция",
-                35));
-        clothingItems.add(new ClothingItem(
-                ++ID,
-                "Юбка с подтяжками",
-                "Яркая и легкая юбка с утяжками",
-                "Материал: Хлопок",
-                4000,
-                "Летняя коллекция",
-                30));
+    public List<ClothingItem> listClothingItems(String title) {
+        if (title != null && !title.isEmpty()) {
+            return itemRepository.findByTitle(title);
+        }
+        return itemRepository.findAll();
     }
 
-    public List<ClothingItem> getClothingItems() {
-        return clothingItems;
+    public void saveClothingItem(ClothingItem clothingItem, MultipartFile file1, MultipartFile file2, MultipartFile file3) throws IOException {
+        Image image1;
+        Image image2;
+        Image image3;
+        if (file1.getSize() != 0) {
+            image1 = toImageEntity(file1);
+            image1.setPreviewImage(true);
+            clothingItem.addImageToProduct(image1);
+        }
+        if (file2.getSize() != 0) {
+            image2 = toImageEntity(file2);
+            clothingItem.addImageToProduct(image2);
+        }
+        if (file3.getSize() != 0) {
+            image3 = toImageEntity(file3);
+            clothingItem.addImageToProduct(image3);
+        }
+        ClothingItem clothingItemFromDB = itemRepository.save(clothingItem);
+        clothingItemFromDB.setPreviewImageId(clothingItemFromDB.getImages().get(0).getId());
+        log.info("Save new item. Title: {}; Price: {}", clothingItem.getTitle(), clothingItem.getPrice());
+        itemRepository.save(clothingItem);
     }
 
-    public void saveClothingItem(ClothingItem clothingItem) {
-        clothingItem.setId(++ID);
-        clothingItems.add(clothingItem);
+    private Image toImageEntity(MultipartFile file) throws IOException {
+        Image image = new Image();
+        image.setName(file.getName());
+        image.setOriginalFileName(file.getOriginalFilename());
+        image.setContentType(file.getContentType());
+        image.setSize(file.getSize());
+        image.setBytes(file.getBytes());
+        return image;
     }
 
     public void deleteClothingItem(Long id) {
-        clothingItems.removeIf(clothingItem -> clothingItem.getId() == id);
+        itemRepository.deleteById(id);
     }
 
     public ClothingItem getProductById(Long id) {
-        for (ClothingItem clothingItem : clothingItems) {
-            if (clothingItem.getId() == id) {
-                return clothingItem;
-            }
-        }
-        return null;
+        return itemRepository.findById(id).orElse(null);
     }
 }
