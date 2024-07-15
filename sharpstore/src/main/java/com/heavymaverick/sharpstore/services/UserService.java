@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private boolean createUser(User user) {
+    public boolean createUser(User user) {
         String email = user.getEmail();
         if (userRepository.findByEmail(email) != null) {
             return false;
@@ -24,6 +24,7 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.getRoles().add(Role.ROLE_USER);
         log.info("Saving new User, email {}", email);
+        userRepository.save(user);
         return true;
     }
 }

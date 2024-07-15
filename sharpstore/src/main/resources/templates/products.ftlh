@@ -4,7 +4,10 @@
     <title>SHARP STORE</title>
 </head>
 <body>
-<h1>Молодой бренд. Sample TEXT</h1><hr>
+<h1>Молодой бренд родом из Сибири <a href="/login">Войти</a></h1><hr>
+<form action="/logout" method="post">
+    <input type="submit" value="Выйти">
+</form>
 <h4>Свое производство, только качественные маериалы</h4>
 <form action="/" method="get">
     Поиск по названию объявления: <input type="text" name="title"><br>
