@@ -19,8 +19,8 @@ public class SecurityConfig{
     protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/item/**", "/registration").permitAll()
-                        .requestMatchers("/images/**")
+                        .requestMatchers("/", "/registration").permitAll()
+                        .requestMatchers("/hello", "/item/**") // сюда не пускает без логина
                         .hasAnyAuthority("ROLE_ADMIN","ROLE_USER")
                         .anyRequest().authenticated()
                 )
@@ -32,7 +32,6 @@ public class SecurityConfig{
 
         return http.build();
     }
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(8);

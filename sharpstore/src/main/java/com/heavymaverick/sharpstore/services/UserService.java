@@ -13,13 +13,12 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @RequiredArgsConstructor
 public class UserService {
+    // Не работает
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     public boolean createUser(User user) {
+        log.info("Attempting to create new user");
         String email = user.getEmail();
-        if (userRepository.findByEmail(email) != null) {
-            return false;
-        }
         user.setActive(true);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.getRoles().add(Role.ROLE_USER);
