@@ -9,8 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@Slf4j
 @Controller
+@Slf4j
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
@@ -26,8 +26,11 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    public String createUser(User user) {
-        userService.createUser(user);
+    public String createUser(User user, Model model) {
+        if (!userService.createUser(user)){
+            model.addAttribute("error", "User could not be created");
+            return "registration";
+        }
         return "redirect:/login";
     }
     @GetMapping("/hello")

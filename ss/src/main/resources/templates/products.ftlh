@@ -2,8 +2,44 @@
 <html>
 <head>
     <title>SHARPSTORE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 </head>
 <body>
+
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Twelfth navbar example">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample10" aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample10">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Centered nav only</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
 <h1>SHARPSTORE</h1>
 <hr>
 <#if user.email??>
@@ -26,7 +62,8 @@
 </form>
 <#list products as clothingItem>
     <div>
-        <p><b>${clothingItem.title}</b> ${clothingItem.price} руб. | <a href="/clothingItem/${clothingItem.id}">Подробнее...</a></p>
+        <p><b>${clothingItem.title}</b> ${clothingItem.price} руб. | <a href="/clothingItem/${clothingItem.id}">Подробнее...</a>
+        </p>
     </div>
 <#else>
     <h3>Товаров нет</h3>
@@ -45,5 +82,9 @@
         <input type="submit" value="Добавить товар"/>
     </form>
 </#if>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

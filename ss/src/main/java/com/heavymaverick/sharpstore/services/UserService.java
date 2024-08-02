@@ -27,7 +27,7 @@ public class UserService {
         }
         user.setActive(true);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.getRoles().add(Role.ROLE_ADMIN);
+        user.getRoles().add(Role.ROLE_USER);
         user.setPhoneNumber(user.getPhoneNumber());
         userRepository.save(user);
         log.info("User created");

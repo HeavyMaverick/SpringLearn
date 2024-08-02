@@ -3,9 +3,9 @@ package com.heavymaverick.sharpstore.services;
 import com.heavymaverick.sharpstore.models.User;
 import com.heavymaverick.sharpstore.models.enums.Role;
 import com.heavymaverick.sharpstore.repositories.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import com.heavymaverick.sharpstore.configurations.SecurityConfig;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @RequiredArgsConstructor
 public class UserService {
-    // Не работает
+
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     public boolean createUser(User user) {

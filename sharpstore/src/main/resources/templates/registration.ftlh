@@ -12,6 +12,9 @@
     Номер телефона: <input type="text" name="phoneNumber"><br><br>
     Пароль: <input type="password" name="password"><br><br>
     <input type="submit" value="Зарегистрироваться"/>
+    <#if error??>
+        <h1>${error}</h1>
+    </#if>
 </form>
 </body>
 </html>

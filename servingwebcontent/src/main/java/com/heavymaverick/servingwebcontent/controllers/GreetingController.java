@@ -1,4 +1,4 @@
-package com.heavymaverick.servingwebcontent;
+package com.heavymaverick.servingwebcontent.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

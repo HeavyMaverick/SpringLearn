@@ -47,7 +47,7 @@ public class ProductService {
         ClothingItem clothingItemFromDB = itemRepository.save(clothingItem);
         clothingItemFromDB.setPreviewImageId(clothingItemFromDB.getImages().get(0).getId());
         log.info("Save new item. Title: {}; Price: {}", clothingItem.getTitle(), clothingItem.getPrice());
-        itemRepository.save(clothingItem);
+        itemRepository.save(clothingItemFromDB);
     }
 
     private Image toImageEntity(MultipartFile file) throws IOException {
