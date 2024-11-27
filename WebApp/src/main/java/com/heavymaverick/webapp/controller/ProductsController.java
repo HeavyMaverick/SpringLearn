@@ -4,7 +4,6 @@ import com.heavymaverick.webapp.client.ProductsRestClient;
 import com.heavymaverick.webapp.controller.payload.NewProductPayload;
 import com.heavymaverick.webapp.entity.Product;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
