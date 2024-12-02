@@ -9,5 +9,5 @@ public class SecurityJwtApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SecurityJwtApplication.class, args);
 	}
-
+		// 1:07:35 https://www.youtube.com/watch?v=NIv9TFTSIlg
 }
