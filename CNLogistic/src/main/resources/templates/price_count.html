@@ -1,91 +1,40 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Расчёт стоимости доставки</title>
-        <link rel="stylesheet" href="styles/styles.css" />
-        <style>
-            .hidden {
-                display: none;
-            }
-        </style>
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8" />
+    <title>Расчёт стоимости доставки</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <a href="/" class="home-link">На главную</a>
+    </nav>
+</header>
+<main>
+    <section class="container">
         <h1>Рассчитать стоимость доставки</h1>
-        <div id="calculator-form">
+        <form id="calculator-form">
             <label for="amountCny">Введите сумму в юанях:</label>
             <input type="number" id="amountCny" required onkeydown="handleKeyDown(event)" />
-            <button onclick="calculateCost()">Рассчитать</button>
-        </div>
+            <button type="button" onclick="calculateCost()">Рассчитать</button>
+        </form>
         <div id="result-container" class="hidden">
             <h2>Стоимость доставки</h2>
             <p>Общая стоимость доставки составляет: <span id="total-cost">0.00</span> рублей.</p>
             <button onclick="createOrder()">Создать заказ</button>
             <button onclick="resetCalculator()">Повторить расчёт</button>
         </div>
-        <div>
-            <br />
-            <a href="/">На главную</a>
-        </div>
-        <script>
-            const CNY_TO_RUB_RATE = 15;
-            const COMMISSION = 1500;
-
-            // Обработчик нажатия клавиши Enter
-            function handleKeyDown(event) {
-                if (event.key === "Enter") {
-                    event.preventDefault(); // Предотвращаем стандартное поведение формы
-                    calculateCost();
-                }
-            }
-
-            function calculateCost() {
-                let amountCny = document.getElementById("amountCny").value;
-                if (!amountCny || isNaN(amountCny) || parseFloat(amountCny) <= 0) {
-                    alert("Введите правильную сумму в юанях.");
-                    return;
-                }
-
-                let costInRubles = (parseFloat(amountCny) * CNY_TO_RUB_RATE).toFixed(2);
-                let totalCost = (parseFloat(costInRubles) + COMMISSION).toFixed(2);
-                document.getElementById("total-cost").innerText = totalCost;
-                document.getElementById("calculator-form").classList.add("hidden");
-                document.getElementById("result-container").classList.remove("hidden");
-            }
-
-            function resetCalculator() {
-                document.getElementById("amountCny").value = "";
-                document.getElementById("calculator-form").classList.remove("hidden");
-                document.getElementById("result-container").classList.add("hidden");
-            }
-            // Функция для отправки данных заказа на сервер
-            async function createOrder() {
-                let amountCny = document.getElementById("amountCny").value;
-                let totalCost = document.getElementById("total-cost").innerText;
-
-                try {
-                    const response = await fetch("/orders", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            amountCny: amountCny,
-                            totalCost: totalCost
-                        })
-                    });
-
-                    if (response.ok) {
-                        alert("Заказ успешно создан!");
-                        resetCalculator();
-                    } else {
-                        throw new Error(`Ошибка создания заказа: ${response.status}`);
-                    }
-                } catch (error) {
-                    console.error(error);
-                    alert("Произошла ошибка при создании заказа.");
-                }
-            }
-        </script>
-    </body>
+    </section>
+</main>
+<footer>
+    <small>by HeavyMaverick</small>
+</footer>
+<script src="/static/js/script_price_count.js"></script>
+</body>
 </html>

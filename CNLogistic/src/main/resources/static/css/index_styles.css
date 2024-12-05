@@ -1,0 +1,67 @@
+/* Глобальные стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #212121;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 6px;
+    background-image: linear-gradient(to right, #555, #333); /* Серый градиент */
+}
+
+a:hover {
+    background-image: linear-gradient(to right, #444, #222); /* Темнее при наведении */
+    color: orange;
+}
+
+.content {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 40px;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 20px;
+}
+
+.content h1 {
+    color: orange;
+    margin-bottom: 20px;
+}
+
+.links {
+    margin-top: 20px;
+}
+
+.links a {
+    display: block;
+    margin-bottom: 10px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    text-align: center;
+}
+
+footer small {
+    color: gray;
+}

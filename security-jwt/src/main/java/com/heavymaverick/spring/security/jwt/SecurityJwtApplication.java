@@ -10,4 +10,5 @@ public class SecurityJwtApplication {
 		SpringApplication.run(SecurityJwtApplication.class, args);
 	}
 		// 1:07:35 https://www.youtube.com/watch?v=NIv9TFTSIlg
+	// 1:27:00
 }

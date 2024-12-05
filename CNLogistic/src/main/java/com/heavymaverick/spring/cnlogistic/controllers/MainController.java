@@ -8,11 +8,21 @@ public class MainController {
 
     @GetMapping("/")
     public String index() {
-        return "static/index";
+        return "index";
     }
 
     @GetMapping("/price")
     public String price() {
         return "price_count";
+    }
+
+    @GetMapping("/orders")
+    public String orders() {
+        return "orders";
+    }
+
+    @GetMapping("/semester")
+    public String semester() {
+        return "semester";
     }
 }
