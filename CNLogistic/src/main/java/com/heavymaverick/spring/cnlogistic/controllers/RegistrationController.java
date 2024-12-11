@@ -54,7 +54,7 @@ public class RegistrationController {
             newUser.setUsername(registerDto.getUsername());
             newUser.setEmail(registerDto.getEmail());
             newUser.setPassword(bCryptEncoder.encode(registerDto.getPassword()));
-            newUser.setRole("USER");
+            newUser.setRole("USER"); // Automatically added ROLE_ + USER
             newUser.setCreatedAt(new Date());
             userRepository.save(newUser);
             model.addAttribute("registerDto", new RegisterDto());
