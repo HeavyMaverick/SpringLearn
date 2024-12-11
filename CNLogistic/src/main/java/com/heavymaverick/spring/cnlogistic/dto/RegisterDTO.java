@@ -1,4 +1,4 @@
-package com.heavymaverick.spring.cnlogistic.models;
+package com.heavymaverick.spring.cnlogistic.dto;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -6,9 +6,9 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
-@Table
 @Data
-public class RegisterDto {
+@Table
+public class RegisterDTO {
 
     @Column(nullable = false)
     @NotEmpty
