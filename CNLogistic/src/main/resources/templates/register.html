@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Регистрация</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/register_styles.css"/>
+</head>
+<body>
+<div class="container">
+    <h1>Регистрация нового пользователя</h1>
+    <div th:if="${success}">
+        <strong>Аккаунт успешно создан</strong>
+        <a href="/login">Войти</a>
+        <button type="button" aria-label="Close"></button>
+    </div>
+    <form action="#" th:action="@{/register}" th:object="${registerDto}" method="post" id="registrationForm">
+        <div class="input-group">
+            <label for="username">Имя пользователя:</label>
+            <input type="text" name="username" id="username" th:field="${registerDto.username}"
+                   placeholder="Введите имя пользователя" required/>
+        </div>
+
+        <div class="input-group">
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" th:field="${registerDto.email}" placeholder="Введите email"
+                   required/>
+        </div>
+
+        <div class="input-group">
+            <label for="password">Пароль:</label>
+            <input type="password" name="password" id="password" th:field="${registerDto.password}"
+                   placeholder="Введите пароль" required/>
+            <label for="confirmPassword"></label>
+            <input type="password" name="password" id="confirmPassword" th:field="${registerDto.confirmPassword}"
+                   placeholder="Повторите пароль" required/>
+        </div>
+
+        <button type="submit" href="/">Зарегистрироваться</button>
+    </form>
+</div>
+<!--<script src="/static/js/register.js"></script>-->
+</body>
+</html>
