@@ -7,9 +7,10 @@ import lombok.Data;
 @Data
 @Table(name = "orders")
 public class OrderDTO {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long orderId;
+    private Integer orderId;
 
     @Column(nullable = false)
     @NotEmpty
@@ -22,4 +23,16 @@ public class OrderDTO {
     @Column
     @NotEmpty
     private int totalCost;
+
+    @Column
+    @NotEmpty
+    private String orderStatus;
+
+    @Column
+    @NotEmpty
+    private String orderDate;
+
+    @Column
+    @NotEmpty
+    private String orderLink;
 }

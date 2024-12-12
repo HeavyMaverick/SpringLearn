@@ -19,16 +19,24 @@ public class OrderController {
     private final OrderRepository orderRepository;
 
     @PostMapping("/price")
-    public ResponseEntity<String> addOrder(Model model, @Valid @ModelAttribute OrderDTO order, BindingResult bindingResult) {
-        OrderDTO orderDTO = new OrderDTO();
-        try {
-            orderDTO.setUsername(order.getUsername());
-            orderDTO.setAmountCny(order.getAmountCny());
-            orderDTO.setTotalCost(order.getTotalCost());
-            orderRepository.save(order);
-        } catch (Exception e) {
-            bindingResult.addError(new FieldError("orderDTO", "username", e.getMessage()));
+    public String addOrder(Model model,
+                           @Valid @ModelAttribute OrderDTO order,
+                           BindingResult bindingResult) {
+        if (bindingResult.hasErrors()){
+            return "price_count";
         }
-        return ResponseEntity.ok("Заказ создан");
+        OrderDTO newOrder = new OrderDTO();
+        if (!order.getOrderLink().isBlank() && !order.getUsername().isBlank()){
+            try {
+                newOrder.setUsername(order.getUsername());
+                newOrder.setAmountCny(order.getAmountCny());
+                newOrder.setTotalCost(order.getTotalCost());
+                orderRepository.save(order);
+            } catch (Exception e) {
+                bindingResult.addError(new FieldError("orderDTO", "username", e.getMessage()));
+            }
+        }
+        model.addAttribute("order", newOrder);
+        return "order_success";
     }
 }

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Результат</title>
+</head>
+<body>
+<div>
+    <h1>Ваш заказ успешно сохранён!</h1>
+    <p>Сумма в юанях: <span th:text="${order.getAmountCny()}"></span></p>
+    <p>Стоимость доставки в рублях: <span th:text="${order.getTotalCost()}"></span></p>
+    <p>Статус заказа: <span th:text="${order.getOrderStatus()}"></span></p>
+</div>
+</body>
+</html>
